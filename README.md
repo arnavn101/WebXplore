@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/arnavn101/WebXplore.svg?branch=master)](https://travis-ci.org/arnavn101/WebXplore)
 ![PyPI - License](https://img.shields.io/pypi/l/webxplore)
 [![codecov](https://codecov.io/gh/arnavn101/WebXplore/branch/master/graph/badge.svg)](https://codecov.io/gh/arnavn101/WebXplore) 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/webxplore)
 
 WebXplore offers multitude of tools for web scraping, crawling
 and performing computations on scraped information to determine sentiment
