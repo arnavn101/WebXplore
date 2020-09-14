@@ -1,0 +1,21 @@
+language: python
+
+python:
+
+  - "3.7"
+
+before_install:
+  - pip install codecov
+  - pip install coverage
+install:
+  - pip install nose
+  - pip install -r requirements.txt
+
+before_script:
+  - cd tests
+script:
+  - nosetests --with-coverage test_webxplore.py
+
+after_success:
+  - codecov
+  - bash <(curl -s https://codecov.io/bash)
