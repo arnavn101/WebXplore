@@ -21,7 +21,6 @@ class SearchWeb:
 
     def retrieveLinks(self):
         for j in search(self.query_search, num=10, stop=self.amountResults, pause=2):
-            print(j)
             self.listLinks.append(j)
 
     def returnListLinks(self):
