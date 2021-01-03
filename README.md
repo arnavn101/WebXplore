@@ -1,5 +1,5 @@
 
-## WebXplore (v1.0.2)
+## WebXplore (v1.0.3)
 
 [![Build Status](https://travis-ci.org/arnavn101/WebXplore.svg?branch=master)](https://travis-ci.org/arnavn101/WebXplore)
 ![PyPI - License](https://img.shields.io/pypi/l/webxplore)
@@ -42,7 +42,7 @@ Here are steps for using *webxplore*.
 ```python
 from webxplore import WebSearcher
 
-searchQuery = WebSearcher.SearchWeb("Artificial Intelligence", 5)
+searchQuery = WebSearcher.SearchWeb('Artificial Intelligence', 5)
 print(searchQuery.returnListLinks())
 ```
 
@@ -51,7 +51,7 @@ print(searchQuery.returnListLinks())
 ```python
 from webxplore import WebScraper
 
-webScraper = WebScraper.ScrapeWebsite("https://en.wikipedia.org/wiki/Artificial_intelligence")
+webScraper = WebScraper.ScrapeWebsite('https://en.wikipedia.org/wiki/Artificial_intelligence')
 print(webScraper.return_article())
 ```
 
@@ -60,7 +60,7 @@ print(webScraper.return_article())
 ```python
 from webxplore.utils import SentimentAnalyzer
 
-sentimentAnalyzer = SentimentAnalyzer.RetrieveSentiments("I am a good person")
+sentimentAnalyzer = SentimentAnalyzer.RetrieveSentiments('This is a good situation.')
 print(sentimentAnalyzer.returnFinalSentiment())
 ```
 
@@ -69,7 +69,7 @@ print(sentimentAnalyzer.returnFinalSentiment())
 ```python
 from webxplore.utils import TextSummarizer
 
-textSummarizer = TextSummarizer.SummarizeText("I am very scared. Please do not leave me.", 2)
+textSummarizer = TextSummarizer.SummarizeText('He feels very scared. He wants to protect himself.', 1)
 print(textSummarizer.returnFinalSummary())
 ```
 
@@ -78,7 +78,8 @@ print(textSummarizer.returnFinalSummary())
 ```python
 from webxplore.utils import ToneAnalyzer
 
-textTone = ToneAnalyzer.ToneAnalysis("I am an incredibly gifted person. I am also a good man.", "watsonApiKey")
+textTone = ToneAnalyzer.ToneAnalysis('Laugh and the world laughs with you.' +
+                                     'Weep and you weep alone.', "watsonApiKey")
 print(textTone.returnTone())
 
 ```
@@ -88,7 +89,7 @@ print(textTone.returnTone())
 ```python
 from webxplore.searchBeyond import SearchNews
 
-newsArticles = SearchNews.RetrieveNewsArticle('Politics', 5, "newsApiKey")
+newsArticles = SearchNews.RetrieveNewsArticle('Politics', 5, 'newsApiKey')
 print(newsArticles.return_articleSentences())
 
 ```
@@ -98,8 +99,8 @@ print(newsArticles.return_articleSentences())
 ```python
 from webxplore.searchBeyond import SearchReddit
 
-redditPosts = SearchReddit.CrawlSubReddit("stocks", "amazon", 10, "RedditClientId",
-                                          "RedditClientSecret", "RedditUserAgent")
+redditPosts = SearchReddit.CrawlSubReddit('stocks', 'amazon', 10, 'RedditClientId',
+                                          'RedditClientSecret', 'RedditUserAgent')
 print(redditPosts.return_listSentences())
 
 ```
@@ -109,8 +110,8 @@ print(redditPosts.return_listSentences())
 ```python
 from webxplore.searchBeyond import SearchTwitter
 
-retrieveTweets = SearchTwitter.CrawlTwitter('tesla', 10, "TwitterConsumerKey", "TwitterConsumerSecret",
-                                            "TwitterAccountKey", "TwitterAccountSecret")
+retrieveTweets = SearchTwitter.CrawlTwitter('tesla', 10, 'TwitterConsumerKey', 'TwitterConsumerSecret',
+                                            'TwitterAccountKey', 'TwitterAccountSecret')
 print(retrieveTweets.return_tweets())
 
 ```

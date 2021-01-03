@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="WebXplore",
-    version="1.0.2",
+    version="1.0.3",
     author="Arnav Nidumolu",
     author_email="arnav.nidumolu@gmail.com",
     description="Explore Web Pages - Scrapers and Crawlers",
