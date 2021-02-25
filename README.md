@@ -14,7 +14,7 @@ This package helps in retrieving information from these sources:
 
 1) **Google Search:** Get links from any *google search query*.
 
-2) **Website Text:** Use an *intelligent parser* to strip all the HTML pages from webpage contents.
+2) **Website Text:** Use an *intelligent parser* to strip all the HTML tags from webpage contents.
 
 3) **Twitter:** Given a word or phrase, get *related tweets*.
 
