@@ -1,9 +1,5 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import os
-import sys
 import statistics
-
-sys.path.insert(0, os.getcwd())  # Resolve Importing errors
 
 
 class RetrieveSentiments:
@@ -30,12 +26,14 @@ class RetrieveSentiments:
             list_sentiments = []
             for individualSentence in self.inputSentenceList:
                 list_sentiments.append(self.returnSentiments(individualSentence))
-            self.finalSentimentScore = RetrieveSentiments.returnMeanArray(list_sentiments)
+            self.finalSentimentScore = RetrieveSentiments.returnMeanArray(
+                list_sentiments
+            )
         else:
             self.finalSentimentScore = self.returnSentiments(inputText)
 
     def returnSentiments(self, bodyText):
-        return self.sentimentAnalyzer.polarity_scores(bodyText)['compound']
+        return self.sentimentAnalyzer.polarity_scores(bodyText)["compound"]
 
     @staticmethod
     def returnMeanArray(arrayInput):

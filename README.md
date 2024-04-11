@@ -1,9 +1,8 @@
-
 ## WebXplore (v1.0.3)
 
 [![Build Status](https://travis-ci.org/arnavn101/WebXplore.svg?branch=master)](https://travis-ci.org/arnavn101/WebXplore)
 ![PyPI - License](https://img.shields.io/pypi/l/webxplore)
-[![codecov](https://codecov.io/gh/arnavn101/WebXplore/branch/master/graph/badge.svg)](https://codecov.io/gh/arnavn101/WebXplore) 
+[![codecov](https://codecov.io/gh/arnavn101/WebXplore/branch/master/graph/badge.svg)](https://codecov.io/gh/arnavn101/WebXplore)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/webxplore)
 
 WebXplore offers multitude of tools for web scraping, crawling
@@ -12,17 +11,18 @@ values or tone of the author.
 
 This package helps in retrieving information from these sources:
 
-1) **Google Search:** Get links from any *google search query*.
+1. **Google Search:** Get links from any _google search query_.
 
-2) **Website Text:** Use an *intelligent parser* to strip all the HTML tags from webpage contents.
+2. **Website Text:** Use an _intelligent parser_ to strip all the HTML tags from webpage contents.
 
-3) **Twitter:** Given a word or phrase, get *related tweets*.
+3. **Twitter:** Given a word or phrase, get _related tweets_.
 
-4) **Reddit:** Get the *hottest posts* given the subreddit and a key phrase.
+4. **Reddit:** Get the _hottest posts_ given the subreddit and a key phrase.
 
-5) **NewsAPI:** Retrieve *News Articles* given topic or phrase.
+5. **NewsAPI:** Retrieve _News Articles_ given topic or phrase.
 
 ## Installation
+
 ```bash
 $ pip install webxplore
 ```
@@ -35,85 +35,81 @@ $ git clone https://github.com/arnavn101/WebXplore.git
 
 ## Getting Started
 
-Here are steps for using *webxplore*. 
+Here are steps for using _webxplore_.
 
-#### 	1. Get Links from Google Search
+#### 1. Get Links from Google Search
 
 ```python
-from webxplore import WebSearcher
+from webxplore.web_searcher import SearchWeb
 
-searchQuery = WebSearcher.SearchWeb('Artificial Intelligence', 5)
-print(searchQuery.returnListLinks())
+search_query = SearchWeb('Artificial Intelligence', 5)
+print(search_query.returnListLinks())
 ```
 
-#### 	2. Scrape a Website
+#### 2. Scrape a Website
 
 ```python
-from webxplore import WebScraper
+from webxplore.web_scraper import ScrapeWebsite
 
-webScraper = WebScraper.ScrapeWebsite('https://en.wikipedia.org/wiki/Artificial_intelligence')
-print(webScraper.return_article())
+scrape_query = ScrapeWebsite('https://en.wikipedia.org/wiki/Artificial_intelligence')
+print(scrape_query.return_article())
 ```
 
-#### 	3. Get Sentiments from Text
+#### 3. Get Sentiments from Text
 
 ```python
-from webxplore.utils import SentimentAnalyzer
+from webxplore.utils.sentiment import RetrieveSentiments
 
-sentimentAnalyzer = SentimentAnalyzer.RetrieveSentiments('This is a good situation.')
-print(sentimentAnalyzer.returnFinalSentiment())
+sentiment_analyzer = RetrieveSentiments('This is a good situation.')
+print(sentiment_analyzer.returnFinalSentiment())
 ```
 
-#### 	4. Get Summary of the Text
+#### 4. Get Summary of the Text
 
 ```python
-from webxplore.utils import TextSummarizer
+from webxplore.utils.summarizer import SummarizeText
 
-textSummarizer = TextSummarizer.SummarizeText('He feels very scared. He wants to protect himself.', 1)
+textSummarizer = SummarizeText('He feels very scared. He wants to protect himself.', 1)
 print(textSummarizer.returnFinalSummary())
 ```
 
-#### 	5. Get Tone of the Text (for each sentence)
+#### 5. Get Tone of the Text (for each sentence)
 
 ```python
-from webxplore.utils import ToneAnalyzer
+from webxplore.utils.analyzer import ToneAnalysis
 
-textTone = ToneAnalyzer.ToneAnalysis('Laugh and the world laughs with you.' +
-                                     'Weep and you weep alone.', "watsonApiKey")
+textTone = ToneAnalysis('Laugh and the world laughs with you.' +
+                        'Weep and you weep alone.', "watsonApiKey")
 print(textTone.returnTone())
-
 ```
 
-#### 	6. Use the news api to get the latest articles
+#### 6. Use the news api to get the latest articles
 
 ```python
-from webxplore.searchBeyond import SearchNews
+from webxplore.search.news import RetrieveNewsArticle
 
-newsArticles = SearchNews.RetrieveNewsArticle('Politics', 5, 'newsApiKey')
+newsArticles = RetrieveNewsArticle('Politics', 5, 'newsApiKey')
 print(newsArticles.return_articleSentences())
-
 ```
 
-#### 	7. Get Posts from a SubReddit
+#### 7. Get Posts from a SubReddit
 
 ```python
-from webxplore.searchBeyond import SearchReddit
+from webxplore.search.reddit import CrawlSubReddit
 
-redditPosts = SearchReddit.CrawlSubReddit('stocks', 'amazon', 10, 'RedditClientId',
+redditPosts = CrawlSubReddit('stocks', 'amazon', 10, 'RedditClientId',
                                           'RedditClientSecret', 'RedditUserAgent')
 print(redditPosts.return_listSentences())
-
 ```
 
-#### 	8. Get Tweets that have a key word
+#### 8. Get Tweets that have a key word
 
 ```python
-from webxplore.searchBeyond import SearchTwitter
+from webxplore.search.twitter import CrawlTwitter
 
-retrieveTweets = SearchTwitter.CrawlTwitter('tesla', 10, 'TwitterConsumerKey', 'TwitterConsumerSecret',
-                                            'TwitterAccountKey', 'TwitterAccountSecret')
+retrieveTweets = CrawlTwitter('tesla', 10, 'TwitterConsumerKey', 'TwitterConsumerSecret',
+                                        'TwitterAccountKey', 'TwitterAccountSecret')
 print(retrieveTweets.return_tweets())
-
 ```
 
 ## Contributions
@@ -125,4 +121,3 @@ all the CI tests.
 ## License
 
 MIT License Copyright (c) 2020, Arnav Nidumolu
-

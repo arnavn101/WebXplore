@@ -4,9 +4,11 @@ beautifulsoup4
 google
 numpy
 pandas
-sklearn
+scikit-learn
 newsapi-python
 praw
 tweepy
 readability-lxml
 textblob
+black
+lxml_html_clean

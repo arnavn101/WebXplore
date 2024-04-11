@@ -1,10 +1,6 @@
-import os
-import sys
 from abc import ABC
 from io import StringIO
 from html.parser import HTMLParser
-
-sys.path.insert(0, os.getcwd())  # Resolve Importing errors
 
 
 class HTMLStripper(HTMLParser, ABC):

@@ -2,40 +2,45 @@ import configparser
 import nltk
 import os
 import praw
-import sys
-
-sys.path.insert(0, os.getcwd())  # Resolve Importing errors
 
 
 class CrawlSubReddit:
     """
 
-        Get SubReddit Posts from Reddit given a search query
+    Get SubReddit Posts from Reddit given a search query
 
-        Usage:
-            getPosts = CrawlSubReddit("stocks", "apple", 10, "CLIENT_ID", "CLIENT_SECRET", "USER_AGENT")
-            print(getPosts.return_articleSentences())
+    Usage:
+        getPosts = CrawlSubReddit("stocks", "apple", 10, "CLIENT_ID", "CLIENT_SECRET", "USER_AGENT")
+        print(getPosts.return_articleSentences())
 
-        Returns:
-            self.return_listSentences() returns all of the sentences in the subreddit posts
+    Returns:
+        self.return_listSentences() returns all of the sentences in the subreddit posts
 
     """
 
-    def __init__(self, subreddit_name, search_query, number_posts, CLIENT_ID, CLIENT_SECRET, USER_AGENT):
+    def __init__(
+        self,
+        subreddit_name,
+        search_query,
+        number_posts,
+        CLIENT_ID,
+        CLIENT_SECRET,
+        USER_AGENT,
+    ):
         # Get Reddit API Information
         self.config = configparser.ConfigParser()
         self.config.read(os.path.join("config_files", "auth.cfg"))
 
         # Initialize Reddit scraper
-        self.reddit_scraper = praw.Reddit(client_id=CLIENT_ID,
-                                          client_secret=CLIENT_SECRET,
-                                          user_agent=USER_AGENT)
+        self.reddit_scraper = praw.Reddit(
+            client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT
+        )
 
         # Set headlines to avoid duplicates
         self.content = set()
 
         # Initialize tokenizer
-        self.tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+        self.tokenizer = nltk.data.load("tokenizers/punkt/english.pickle")
 
         # Initialize variables
         self.list_sentences = []

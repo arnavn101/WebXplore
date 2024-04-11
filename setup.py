@@ -21,10 +21,21 @@ setuptools.setup(
         "Intended Audience :: Developers",
         "Development Status :: 5 - Production/Stable",
     ],
-    keywords=" ".join(
-        ["web", "crawling", "scraping", "nlp"]
-    ),
-    install_requires=["nltk", "requests", "beautifulsoup4", "google", "numpy", "pandas", "textblob",
-                      "sklearn", "newsapi-python", "praw", "tweepy", "readability-lxml"],
+    keywords=" ".join(["web", "crawling", "scraping", "nlp"]),
+    install_requires=[
+        "nltk",
+        "requests",
+        "beautifulsoup4",
+        "google",
+        "numpy",
+        "pandas",
+        "textblob",
+        "scikit-learn",
+        "newsapi-python",
+        "praw",
+        "tweepy",
+        "readability-lxml",
+        "lxml_html_clean",
+    ],
     python_requires=">=3.7",
 )

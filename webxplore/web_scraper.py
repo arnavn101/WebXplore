@@ -1,13 +1,9 @@
-import os
-import sys
 import requests
 import unicodedata
 from itertools import groupby
 from readability import Document
-from webxplore.utils.StripHTML import HTMLStripper
-from webxplore.utils.Utilities import UtilFunctions
-
-sys.path.insert(0, os.getcwd())  # Resolve Importing errors
+from webxplore.utils.html_handler import HTMLStripper
+from webxplore.utils.utilities import UtilFunctions
 
 
 class ScrapeWebsite:
@@ -27,8 +23,9 @@ class ScrapeWebsite:
     def __init__(self, website_name):
         self.text_content = ""
         self.separated_sentences = []
-        self.request_website = requests.get(website_name, headers=ScrapeWebsite.returnRandomHeaders()
-                                            , timeout=10)
+        self.request_website = requests.get(
+            website_name, headers=ScrapeWebsite.returnRandomHeaders(), timeout=10
+        )
         self.retrieve_important()
         self.separated_sentences = UtilFunctions.separateSentences(self.text_content)
         self.strip_longSpaces()
@@ -36,10 +33,15 @@ class ScrapeWebsite:
 
     @staticmethod
     def returnRandomHeaders():
-        return {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                              'Chrome/56.0.2924.76 Safari/537.36', "Upgrade-Insecure-Requests": "1", "DNT": "1",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language":
-                    "en-US,en;q=0.5", "Accept-Encoding": "gzip, deflate"}
+        return {
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/56.0.2924.76 Safari/537.36",
+            "Upgrade-Insecure-Requests": "1",
+            "DNT": "1",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate",
+        }
 
     @staticmethod
     def stripTags(html_content):
@@ -50,7 +52,7 @@ class ScrapeWebsite:
     def retrieve_important(self):
         article_content = Document(self.request_website.text)
         html_text = article_content.summary()
-        self.text_content = (ScrapeWebsite.stripTags(html_text))
+        self.text_content = ScrapeWebsite.stripTags(html_text)
         self.text_content = ScrapeWebsite.normalizeData(self.text_content)
 
     @staticmethod
@@ -64,16 +66,22 @@ class ScrapeWebsite:
         index_sentence = 0
         for individual_sentence in self.separated_sentences:
             if "\n\n" in individual_sentence:
-                self.separated_sentences[index_sentence] = (" ".join(individual_sentence.rsplit("\n\n", 1)[1:]))
+                self.separated_sentences[index_sentence] = " ".join(
+                    individual_sentence.rsplit("\n\n", 1)[1:]
+                )
             index_sentence += 1
 
     def remove_escapeChars(self):
         self.format_badSentences()
-        self.separated_sentences = [individual_sentence.replace('\n', '').strip() for individual_sentence
-                                    in self.separated_sentences]
+        self.separated_sentences = [
+            individual_sentence.replace("\n", "").strip()
+            for individual_sentence in self.separated_sentences
+        ]
 
     def return_article(self):
-        return ' '.join(individual_sentence for individual_sentence in self.separated_sentences)
+        return " ".join(
+            individual_sentence for individual_sentence in self.separated_sentences
+        )
 
     """
     
@@ -81,6 +89,7 @@ class ScrapeWebsite:
     (Source: https://stackoverflow.com/a/12505450)
     
     """
+
     def strip_longSpaces(self, max_specified=5):
         for individual_sentence in self.separated_sentences:
             current_max = 0
@@ -90,7 +99,7 @@ class ScrapeWebsite:
 
             # Iterate over the list returning each string
             for c, sub_group in groupby(split_string):
-                if c != '':
+                if c != "":
                     continue
 
                 # Get the length of the run of spaces
